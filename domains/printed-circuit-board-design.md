@@ -13,7 +13,7 @@
 | **DSL** | [**Zener**](https://github.com/diodeinc/pcb), built on [Starlark](https://github.com/bazelbuild/starlark) |
 | **Engine** | Diode's `pcb` command-line tool + [KiCad](https://www.kicad.org/) |
 | **Output** | KiCad projects → Gerber and fabrication files |
-| **Benchmark** | [PCB Gym](https://neurips.cc/virtual/2026/loc/paris/161602) (design intent given as Zener code) |
+| **Leaderboard** | None public yet (PCB Gym is internal; see Benchmarks) |
 
 Zener is a PCB hardware description language from [Diode Computers](https://diode.computer/). It is built on Starlark, the Python-like configuration language Google created for Bazel. You describe components, nets, interfaces and reusable hierarchical modules in `.zen` files, and `pcb build` turns them into KiCad projects. It is open source (MIT license).
 
@@ -41,13 +41,14 @@ Zener is a PCB hardware description language from [Diode Computers](https://diod
 
 ## Benchmarks
 
-| Benchmark | What it measures | Link |
+**Best model right now:** there is no public leaderboard for PCB design yet. PCB Gym is run internally by Diode; the latest published scores are in [Anthropic's electronics report](https://www.anthropic.com/research/claude-electronics-design) (Nov 2026).
+
+| Benchmark | What it measures | Results |
 |---|---|---|
-| **PCB Gym** | **Agentic PCB layout**: placement and routing together, on real open-source hardware designs from 2 to 12 copper layers. Design intent is given as **Zener** code. Graded with deterministic checks plus a rubric-based agent grader. Anthropic describes it as Diode's placement and routing benchmark. | [NeurIPS 2026 workshop paper](https://neurips.cc/virtual/2026/loc/paris/161602) |
-| PCB-Bench | LLMs and multimodal LLMs on PCB placement, routing and design understanding (text, images and real design files). ICLR 2026. | [Project page](https://digailab.github.io/PCB-Bench/) |
-| PCBWorld | Open-source, KiCad-based routing environment and benchmark (PCBWorld-Bench) that compares LLM, RL and rule-based routers. | [Paper](https://arxiv.org/abs/2607.05915) |
-| HWE-Bench | Whether LLMs can design board-level **schematics**. | [Paper](https://arxiv.org/abs/2603.18102) |
-| PCB-QA | Question answering over PCB design files. | [Paper](https://arxiv.org/abs/2606.23704) |
+| **PCB Gym** | **Agentic PCB layout**: placement and routing together, on real open-source hardware designs from 2 to 12 copper layers. Design intent is given as **Zener** code. Graded with deterministic checks plus a rubric-based agent grader. Diode's benchmark. | No public leaderboard · [Latest scores (Anthropic)](https://www.anthropic.com/research/claude-electronics-design) · [Paper](https://neurips.cc/virtual/2026/loc/paris/161602) |
+| PCB-Bench | LLMs and multimodal LLMs on PCB placement, routing and design understanding. ICLR 2026. | No public leaderboard · [Results tables](https://digailab.github.io/PCB-Bench/) |
+| PCBWorld | KiCad-based routing environment comparing LLM, RL and rule-based routers on synthetic and 679 real boards. | No public leaderboard · [Paper](https://arxiv.org/abs/2607.05915) |
+| HWE-Bench (schematics) | Board-level **schematic** design, checked with electrical rules and LTspice simulation. | No public leaderboard · [Paper](https://arxiv.org/abs/2603.18102) |
 
 ---
 
@@ -55,3 +56,4 @@ Zener is a PCB hardware description language from [Diode Computers](https://diod
 
 - [Anthropic and Diode Computers: Claude Fable 5.2 designed three working devices end to end](https://www.anthropic.com/research/claude-electronics-design) (Nov 2026): schematics, placement and routing in KiCad, enclosures, firmware and parts lists. Diode built the boards directly from Claude's files. Reported 69% on PCB Gym (vs. 25% for Fable 5). The devices are prototypes, not validated for mass production or certification.
 - [A user reports Fable 5.2 completing a PCB layout on its own in about 1.5 hours](https://x.com/jlcjak/status/2119917708846260729) (@jlcjak, Nov 2026). Single user report, not a controlled evaluation.
+- [OpenAI designed a test device with GPT-6 Astra](https://openai.com/index/accelerating-engineering-for-the-physical-world/) (Nov 2026): the model selected the electronic components and designed the PCB to fit the enclosure it had also designed. A contract manufacturer built a small batch in under a month, after several review rounds for manufacturing constraints.

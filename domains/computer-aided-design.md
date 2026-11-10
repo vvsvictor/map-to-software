@@ -13,7 +13,7 @@
 | **DSL** | [**CadQuery**](https://github.com/CadQuery/cadquery) or [**build123d**](https://github.com/gumyr/build123d) (Python) |
 | **Engine** | [Open CASCADE Technology (OCCT)](https://dev.opencascade.org/), an exact B-rep geometry kernel |
 | **Output** | **STEP** (exchange with other CAD tools and manufacturing), **STL** / 3MF (3D printing) |
-| **Benchmark** | [BenchCAD](https://benchcad.github.io/BenchCAD_webpage/) (CadQuery) |
+| **Leaderboard** | [BenchCAD](https://benchcad.com/leaderboard) |
 
 **Why:**
 
@@ -40,23 +40,15 @@
 
 ---
 
-## Agent tooling
-
-| Tool | What it does |
-|---|---|
-| [**text-to-cad**](https://github.com/earthtojake/text-to-cad) ([website](https://www.texttocad.dev/)) | Open-source (MIT) plugin and skill bundle for coding agents (Claude Code, Codex, Cursor, Gemini and others). The agent writes **build123d** models, runs them and shows them in a CAD viewer. Exports STEP, STL, 3MF, GLB, DXF and PDF drawings. Also includes skills for KiCad boards, manufacturing checks, FEA stress checks (CalculiX), renders (Blender), 3D-print slicing and robot descriptions (URDF/SDF). |
-
----
-
 ## Benchmarks
 
-| Benchmark | What it measures | Link |
-|---|---|---|
-| **BenchCAD** | Reading and writing **CadQuery** code for real mechanical parts: about 17,900 execution-verified programs across 106 part families from industrial standards (ISO, DIN, EN, ASME, IEC). Tasks: *Vision2Code* (images → CadQuery, scored by voxel IoU against the reference), *CodeEdit* (edit a program from an instruction), and numeric *Vision-QA* / *Code-QA*. Scoring is automatic, with no LLM judge. | [Project page and leaderboard](https://benchcad.github.io/BenchCAD_webpage/) · [Paper](https://arxiv.org/abs/2605.10865) |
-| Text2CAD-Bench | Generating parametric CAD from text descriptions. | [Paper](https://arxiv.org/abs/2605.18430) |
-| CADGenBench | CAD generation leaderboard hosted on Hugging Face. | [GitHub](https://github.com/huggingface/cadgenbench) |
+**Best model right now:** [BenchCAD leaderboard](https://benchcad.com/leaderboard). It has two boards: models with the standard harness, and agents with their own harness (for example Claude Code or Codex).
 
-> **Best current model:** rankings change every few weeks, and third-party aggregators often disagree because they track different task variants and dates. Check the **[official BenchCAD leaderboard](https://benchcad.github.io/BenchCAD_webpage/)**.
+| Benchmark | What it measures | Results |
+|---|---|---|
+| **BenchCAD** | Reading and writing **CadQuery** code for real mechanical parts: about 17,900 execution-verified programs across 106 part families from industrial standards (ISO, DIN, EN, ASME, IEC). Tasks: images → CadQuery (scored by voxel IoU), editing programs, and numeric questions about parts. Scores are re-graded by the authors, not self-reported. | [**Leaderboard**](https://benchcad.com/leaderboard) · [Paper](https://arxiv.org/abs/2605.10865) |
+| CADGenBench | CAD generation benchmark hosted on Hugging Face. | [**Leaderboard**](https://huggingface.co/spaces/HuggingAI4Engineering/CADGenBench) · [GitHub](https://github.com/huggingface/cadgenbench) |
+| Text2CAD-Bench | 600 human-curated text-to-parametric-CAD examples at four difficulty levels. | No public leaderboard yet (planned) · [Paper](https://arxiv.org/abs/2605.18430) |
 
 ---
 
@@ -64,3 +56,5 @@
 
 - [Robot designed entirely as build123d code written by Claude Opus, with a YAML spec for the global parameters and Fusion 360 used only as a viewer](https://x.com/observie/status/2106301475261423651) (@observie, Oct 2026).
 - [Anthropic reports 83.5% on BenchCAD 2.1 for Claude Fable 5.2](https://www.anthropic.com/research/claude-electronics-design) (Nov 2026), as part of designing 3D-printable enclosures for electronic devices.
+- [OpenAI's hardware teams](https://openai.com/index/accelerating-engineering-for-the-physical-world/) (Nov 2026) use Codex to create and modify CAD models, turn 3D designs into production-ready 2D drawings and prepare FEA simulations. In the same article, two people designed a complete test device (enclosure, PCB and firmware) with GPT-6 Astra in under a week, although it needed several review rounds before manufacturing because the model missed tolerances and assembly details.
+- [Chip Ganassi Racing + OpenAI](https://openai.com/index/accelerating-engineering-for-the-physical-world/) (Nov 2026): turning **3D scans of existing parts into editable CAD models and 2D manufacturing drawings**, useful when the original design files are missing. CGR engineers check accuracy and manufacturability.
